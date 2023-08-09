@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 
 import StartScreen from './screens/StartScreen'
+import DashboardScreen from './screens/DashboradScreen'
 import {theme} from './utils/style';
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         }}
       >
         <Stack.Screen name="StartScreen" component={StartScreen} />
+        <Stack.Screen name="DashboardScreen" component={DashboardScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   </Provider>

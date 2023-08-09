@@ -16,13 +16,13 @@ export default function StartScreen({ navigation }) {
       </Paragraph>
       <Button
         mode="contained"
-        onPress={() => navigation.navigate('LoginScreen')}
+        onPress={() => navigation.navigate('DashboardScreen')}
       >
         Login
       </Button>
       <Button
         mode="outlined"
-        onPress={() => navigation.navigate('RegisterScreen')}
+        onPress={() => navigation.navigate('DashboardScreen')}
       >
         Sign Up
       </Button>
