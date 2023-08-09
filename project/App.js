@@ -1,12 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Provider } from 'react-native-paper';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack'
+
+import StartScreen from './screens/StartScreen'
+import {theme} from './utils/style';
 
 export default function App() {
+  const Stack = createStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>This is air-quality app</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider theme={theme}>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="StartScreen"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="StartScreen" component={StartScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  </Provider>
   );
 }
 
