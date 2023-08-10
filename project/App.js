@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 
 import StartScreen from './screens/StartScreen'
-import DashboardScreen from './screens/DashboradScreen'
+import MainScreen from './screens/MainScreen'
 import {theme} from './utils/style';
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
         }}
       >
         <Stack.Screen name="StartScreen" component={StartScreen} />
-        <Stack.Screen name="DashboardScreen" component={DashboardScreen} />
+        <Stack.Screen name="MainScreen" component={MainScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   </Provider>
@@ -28,10 +28,5 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
 });
