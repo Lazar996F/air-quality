@@ -1,21 +1,20 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Linking,
-} from 'react-native';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { Text, View, StyleSheet, Linking } from 'react-native';
 
 import { theme } from '../utils/style';
+import { DashboardIcon } from '../components/DashboardIcon';
 
 export default function DashboardScreen({ navigation }) {
   const openGoogleMaps = () => {
-    const latitude = 43.8563;
-    const longitude = 18.4131;
-    const mapUrl = `https://www.google.com/maps/place/${latitude},${longitude}`;
+    const cityName = 'Sarajevo';
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      cityName
+    )}`;
     Linking.openURL(mapUrl);
+  };
+
+  const goToHomeScreen = () => {
+    navigation.navigate('MainScreen');
   };
 
   return (
@@ -23,23 +22,13 @@ export default function DashboardScreen({ navigation }) {
       <View style={styles.polutionIntroText}>
         <Text>Zagađenost vazduha je</Text>
       </View>
-      <View style={styles.polutionHalfCircleScale}>
+      <View style={styles.polutionSemiCircleScale}>
         <Text>Here goes scale</Text>
       </View>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('MainScreen')}>
-          <FontAwesome name="home" size={30} color={theme.colors.primary} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={openGoogleMaps}>
-          <FontAwesome name="map" size={25} color={theme.colors.primary} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons
-            name="analytics-outline"
-            size={25}
-            color={theme.colors.primary}
-          />
-        </TouchableOpacity>
+        <DashboardIcon name={'home'} onPressHome={goToHomeScreen} />
+        <DashboardIcon name={'map'} onPressMap={openGoogleMaps} />
+        <DashboardIcon name={'analytics-outline'} />
       </View>
     </View>
   );
@@ -54,7 +43,7 @@ const styles = StyleSheet.create({
   polutionIntroText: {
     marginTop: 100,
   },
-  polutionHalfCircleScale: {
+  polutionSemiCircleScale: {
     flex: 2,
     height: 150,
     width: 200,
