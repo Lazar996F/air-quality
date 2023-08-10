@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Avatar, Button, Card, Text } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
-const MyComponent = ({city, qualityValue}) => (
+const MyComponent = ({ city, qualityValue, navigation }) => (
   <Card style={styles.cardWrapper}>
     <Card.Title title={city} subtitle="Card Subtitle" left={LeftContent} />
     <Card.Content>
@@ -12,18 +12,18 @@ const MyComponent = ({city, qualityValue}) => (
       <Text variant="bodyMedium">Card content</Text>
     </Card.Content>
     <Card.Actions>
-      <Button>Saznaj više</Button>
+      <Button onPress={() => navigation.navigate('DashboardScreen')}>
+        Saznaj više
+      </Button>
     </Card.Actions>
   </Card>
 );
 
 export default MyComponent;
 
-
 const styles = StyleSheet.create({
-    cardWrapper:{
-        backgroundColor:"#A8E05F",
-        marginBottom:50
-    }
-})
-  
+  cardWrapper: {
+    backgroundColor: '#A8E05F',
+    marginBottom: 50,
+  },
+});
