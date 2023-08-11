@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 
-import Card from '../components/Card';
+import CardAirQuality from '../components/CardAirQuality';
 import { citiesData } from '../dummyData';
 
 export default function MainScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       {citiesData.map((cityData, index) => (
-        <Card
+        <CardAirQuality
           key={index}
           city={cityData.city}
           qualityValue={cityData.quality}
