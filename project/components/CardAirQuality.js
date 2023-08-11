@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { Avatar, Button, Card, Text } from 'react-native-paper';
-import { StyleSheet } from 'react-native';
-import { citiesData } from '../dummyData';
+import { Button, Card, Text } from 'react-native-paper';
+import { StyleSheet, Image } from 'react-native';
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+const leftContent = (props) => <Image {...props} source={require("../assets/emoji/emojiDobar.png")} style={styles.iconAirIndicator}/>
 
-const MyComponent = ({ city, qualityValue, navigation }) => {
+const CardAirQuality = ({ city, qualityValue, navigation }) => {
   const navigateToDashboard = () => {
     navigation.navigate('DashboardScreen', { selectedCity: city });
   };
   return (
     <Card style={styles.cardWrapper}>
-      <Card.Title title={city} subtitle="Card Subtitle" left={LeftContent} />
+      <Card.Title title="Vazduh je trenutno odlican" left={leftContent} />
       <Card.Content>
         <Text variant="titleLarge">{city}</Text>
-        <Text variant="bodyMedium">Card content</Text>
       </Card.Content>
       <Card.Actions>
         <Button onPress={navigateToDashboard}>Saznaj više</Button>
@@ -23,11 +21,14 @@ const MyComponent = ({ city, qualityValue, navigation }) => {
   );
 };
 
-export default MyComponent;
+export default CardAirQuality;
 
 const styles = StyleSheet.create({
   cardWrapper: {
-    backgroundColor: '#A8E05F',
     marginBottom: 50,
   },
+  iconAirIndicator:{
+    width: 40,
+    height: 40
+  }
 });
