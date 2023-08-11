@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, Linking } from 'react-native';
+import CircularProgress from 'react-native-circular-progress-indicator';
 
 import { theme } from '../utils/style';
 import { DashboardIcon } from '../components/DashboardIcon';
@@ -20,10 +21,19 @@ export default function DashboardScreen({ navigation, route }) {
   return (
     <View style={styles.screen}>
       <View style={styles.polutionIntroText}>
-        <Text>Zagađenost vazduha je</Text>
+        <Text style={styles.polutionIntroTextStyle}>Zagađenost vazduha je</Text>
       </View>
       <View style={styles.polutionSemiCircleScale}>
-        <Text>Here goes scale</Text>
+        <CircularProgress
+          value={60}
+          radius={120}
+          duration={2000}
+          progressValueColor={'#0cf2b4'}
+          maxValue={100}
+          title={'ppm'}
+          titleColor={'black'}
+          titleStyle={{ fontWeight: 'bold' }}
+        />
       </View>
       <View style={styles.iconContainer}>
         <DashboardIcon name={'home'} onPressHome={goToHomeScreen} />
@@ -43,17 +53,23 @@ const styles = StyleSheet.create({
   polutionIntroText: {
     marginTop: 100,
   },
+  polutionIntroTextStyle: {
+    fontSize: 22,
+    color: theme.colors.primary,
+  },
   polutionSemiCircleScale: {
-    flex: 2,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     height: 150,
     width: 200,
   },
   iconContainer: {
     flexDirection: 'row',
-    width: '80%',
+    width: '90%',
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginVertical: 15,
+    marginVertical: 25,
   },
   image: {
     width: 110,
