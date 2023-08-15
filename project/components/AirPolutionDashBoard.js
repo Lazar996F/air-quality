@@ -27,8 +27,9 @@ export const AirPolutionDashBoard = ({ selectedCity }) => {
 
 const styles = StyleSheet.create({
   airPolutionStyling: {
+    flex: 1,
     marginTop: 80,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
   },
   appNameTextStyle: {
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   indexNumberOfPolutionContainer: {
-    marginTop: 20,
+    // marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
