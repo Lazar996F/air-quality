@@ -10,7 +10,7 @@ const CardAirQuality = ({ city, qualityValue, navigation }) => {
   };
   return (
     <Card style={styles.cardWrapper}>
-      <Card.Title title="Vazduh je trenutno odlican" left={leftContent} />
+      <Card.Title style={styles.cardTitle} title="Vazduh je trenutno odlican" left={leftContent} />
       <Card.Content>
         <Text variant="titleLarge">{city}</Text>
       </Card.Content>
@@ -26,6 +26,11 @@ export default CardAirQuality;
 const styles = StyleSheet.create({
   cardWrapper: {
     marginBottom: 50,
+    borderWidth:3,
+    borderColor:'green'
+  },
+  cardTitle: {
+    
   },
   iconAirIndicator:{
     width: 40,
