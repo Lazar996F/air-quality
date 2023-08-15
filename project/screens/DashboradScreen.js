@@ -1,9 +1,17 @@
 import React from 'react';
-import { Text, View, StyleSheet, Linking } from 'react-native';
-import CircularProgress from 'react-native-circular-progress-indicator';
+import { Text, View, Image, StyleSheet, Linking } from 'react-native';
 
 import { theme } from '../utils/style';
 import { DashboardIcon } from '../components/DashboardIcon';
+import { AirPolutionDashBoard } from '../components/AirPolutionDashBoard';
+import { PolutionIndexTableDashboard } from '../components/PolutionIndexTableDashboard';
+
+const leftContent = (props) => (
+  <Image
+    source={require('../assets/emoji/emojiDobar.png')}
+    style={styles.iconAirIndicator}
+  />
+);
 
 export default function DashboardScreen({ navigation, route }) {
   const selectedCity = route.params.selectedCity;
@@ -20,21 +28,10 @@ export default function DashboardScreen({ navigation, route }) {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.polutionIntroText}>
-        <Text style={styles.polutionIntroTextStyle}>Zagađenost vazduha je</Text>
+      <View style={styles.airPolutionStylingContainer}>
+        <AirPolutionDashBoard selectedCity={selectedCity} />
       </View>
-      <View style={styles.polutionSemiCircleScale}>
-        <CircularProgress
-          value={60}
-          radius={120}
-          duration={2000}
-          progressValueColor={'#0cf2b4'}
-          maxValue={100}
-          title={'ppm'}
-          titleColor={'black'}
-          titleStyle={{ fontWeight: 'bold' }}
-        />
-      </View>
+      <PolutionIndexTableDashboard />
       <View style={styles.iconContainer}>
         <DashboardIcon name={'home'} onPressHome={goToHomeScreen} />
         <DashboardIcon name={'map'} onPressMap={openGoogleMaps} />
@@ -50,30 +47,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  polutionIntroText: {
-    marginTop: 100,
-  },
-  polutionIntroTextStyle: {
-    fontSize: 22,
-    color: theme.colors.primary,
-  },
-  polutionSemiCircleScale: {
-    flex: 1,
-    justifyContent: 'center',
+  airPolutionStylingContainer: {
+    flex: 3,
+    backgroundColor: '#38bf56',
+    width: '100%',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    height: 150,
-    width: 200,
   },
+
   iconContainer: {
     flexDirection: 'row',
-    width: '90%',
+    width: '100%',
+    height: 65,
+    paddingVertical: 10,
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginVertical: 25,
-  },
-  image: {
-    width: 110,
-    height: 110,
-    marginBottom: 8,
+    backgroundColor: '#e3e2e5',
   },
 });
