@@ -4,6 +4,7 @@ import { Text, View, Image, StyleSheet, Linking } from 'react-native';
 import { theme } from '../utils/style';
 import { DashboardIcon } from '../components/DashboardIcon';
 import { AirPolutionDashBoard } from '../components/AirPolutionDashBoard';
+import { PolutionIndexTableDashboard } from '../components/PolutionIndexTableDashboard';
 
 const leftContent = (props) => (
   <Image
@@ -30,24 +31,7 @@ export default function DashboardScreen({ navigation, route }) {
       <View style={styles.airPolutionStylingContainer}>
         <AirPolutionDashBoard selectedCity={selectedCity} />
       </View>
-      <View style={styles.indexTable}>
-        <View style={styles.indexTableRow}>
-          <View style={styles.indexTableColumn}>
-            <Text>index 1</Text>
-          </View>
-          <View style={styles.indexTableColumn}>
-            <Text>index 1</Text>
-          </View>
-        </View>
-        <View style={styles.indexTableRow}>
-          <View style={styles.indexTableColumn}>
-            <Text>index 1</Text>
-          </View>
-          <View style={styles.indexTableColumn}>
-            <Text>index 1</Text>
-          </View>
-        </View>
-      </View>
+      <PolutionIndexTableDashboard />
       <View style={styles.iconContainer}>
         <DashboardIcon name={'home'} onPressHome={goToHomeScreen} />
         <DashboardIcon name={'map'} onPressMap={openGoogleMaps} />
@@ -71,28 +55,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  indexTable: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  indexTableRow: {
-    flexDirection: 'row',
-  },
-  indexTableColumn: {
-    flex: 1,
-    height: 95,
-    backgroundColor: 'lightgray',
-  },
-
   iconContainer: {
     flexDirection: 'row',
     width: '100%',
+    height: 65,
+    paddingVertical: 10,
     justifyContent: 'space-around',
     alignItems: 'center',
-    padding: 10,
-    backgroundColor: 'beige'
+    backgroundColor: '#e3e2e5',
   },
-
-  // EMOJI ICON STYLES
 });
