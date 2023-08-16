@@ -1,41 +1,36 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, Linking } from 'react-native';
-
-import { theme } from '../utils/style';
+import { View, StyleSheet } from 'react-native';
 import { DashboardIcon } from '../components/DashboardIcon';
 import { AirPolutionDashBoard } from '../components/AirPolutionDashBoard';
-import { PolutionIndexTableDashboard } from '../components/PolutionIndexTableDashboard';
-
-const leftContent = (props) => (
-  <Image
-    source={require('../assets/emoji/emojiDobar.png')}
-    style={styles.iconAirIndicator}
-  />
-);
+import { getColorByQualityValue } from '../utils/helpers';
 
 export default function DashboardScreen({ navigation, route }) {
   const selectedCity = route.params.selectedCity;
+  const qualityValue = route.params.qualityValue;
+  const ozoneValue = route.params.ozoneValue;
+
   const openGoogleMaps = () => {
-    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      selectedCity
-    )}`;
-    Linking.openURL(mapUrl);
+    navigation.navigate('MapAirQuality')
   };
+
 
   const goToHomeScreen = () => {
     navigation.navigate('MainScreen');
   };
 
+  const openGraphView = () => {
+    navigation.navigate('GraphAirQuality');
+  }
+
   return (
     <View style={styles.screen}>
-      <View style={styles.airPolutionStylingContainer}>
-        <AirPolutionDashBoard selectedCity={selectedCity} />
+      <View style={[styles.airPolutionStylingContainer, {backgroundColor: getColorByQualityValue(qualityValue)}]}>
+        <AirPolutionDashBoard selectedCity={selectedCity} qualityValue={qualityValue} ozoneValue={ozoneValue} />
       </View>
-      <PolutionIndexTableDashboard />
       <View style={styles.iconContainer}>
-        <DashboardIcon name={'home'} onPressHome={goToHomeScreen} />
-        <DashboardIcon name={'map'} onPressMap={openGoogleMaps} />
-        <DashboardIcon name={'analytics-outline'} />
+        <DashboardIcon name={'home'} onPress={goToHomeScreen} />
+        <DashboardIcon name={'map'} onPress={openGoogleMaps} />
+        <DashboardIcon name={'analytics-outline'} onPress={openGraphView} />
       </View>
     </View>
   );
@@ -48,8 +43,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   airPolutionStylingContainer: {
-    flex: 3,
-    backgroundColor: '#38bf56',
+    flex: 4,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',

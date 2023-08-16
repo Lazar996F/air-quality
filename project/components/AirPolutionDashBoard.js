@@ -1,25 +1,31 @@
 import { StyleSheet, View, Text, Image } from 'react-native';
+import { getIconByQualityValue, getQualityValueText } from '../utils/helpers';
+import CircularProgress from 'react-native-circular-progress-indicator';
 
-export const AirPolutionDashBoard = ({ selectedCity }) => {
+export const AirPolutionDashBoard = ({ selectedCity, qualityValue, ozoneValue }) => {
+
+  const imageSrc = getIconByQualityValue(qualityValue);
+
   return (
     <View style={styles.airPolutionStyling}>
-      <View>
-        <Text style={styles.appNameTextStyle}>Digitalni Ozon</Text>
-      </View>
-      <View style={styles.iconAirIndicatorContainer}>
-        <Image
-          source={require('../assets/emoji/emojiDobar.png')}
-          style={styles.iconAirIndicator}
+        <CircularProgress
+          value={ozoneValue}
+          radius={120}
+          duration={2000}
+          progressValueColor={'#0cf2b4'}
+          maxValue={100}
+          title={'ppm'}
+          titleColor={'black'}
+          titleStyle={{ fontWeight: 'bold' }}
         />
-      </View>
       <View style={styles.selectedCityTextBelowIconContainer}>
         <Text style={styles.selectedCityTextBelowIconStyle}>
           Trenutni kvalitet vazduha - {selectedCity}
         </Text>
       </View>
       <View style={styles.indexNumberOfPolutionContainer}>
-        <Text style={styles.indexNumberOfPolutionContainerStyle}>22</Text>
-        <Text style={styles.indexInWordStyle}>Odlično</Text>
+        <Text style={styles.indexNumberOfPolutionContainerStyle}>AQI:{qualityValue}</Text>
+        <Text style={styles.indexInWordStyle}>{getQualityValueText(qualityValue)}</Text>
       </View>
     </View>
   );
@@ -31,10 +37,6 @@ const styles = StyleSheet.create({
     marginTop: 80,
     justifyContent: 'space-evenly',
     alignItems: 'center',
-  },
-  appNameTextStyle: {
-    color: 'white',
-    fontSize: 22,
   },
   iconAirIndicatorContainer: {
     width: 80,
@@ -59,7 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   indexNumberOfPolutionContainer: {
-    // marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -11,8 +11,9 @@ export default function MainScreen({ navigation }) {
         <CardAirQuality
           key={index}
           city={cityData.city}
-          qualityValue={cityData.quality}
+          qualityValue={cityData.index}
           navigation={navigation}
+          ozoneValue={cityData.ozone}
         />
       ))}
     </ScrollView>
@@ -23,6 +24,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    marginTop: 50,
+    marginTop: 10,
   },
 });

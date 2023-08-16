@@ -9,8 +9,11 @@ export const theme = {
     secondary: '#414757',
     error: '#f13a59',
     blueLight: '#0770ffff',
-    greenLight: '#0871ffcc',
-    green: '#0770ff99',
-    greenIndicator:'#A8E05F'
+    greenIndicator:'#A8E05F',
+    green: '#6ab823',
+    yellow: '#ebe458',
+    orange: '#f2a32c',
+    red: '#f02727',
+    prple: '#a51eff'
   },
 }
